@@ -1,4 +1,5 @@
 import { DUMMY_NEWS } from "@/dummy-news";
+import { notFound } from "next/navigation";
 import React from "react";
 
 export async function generateMetadata({ params }) {
@@ -9,6 +10,10 @@ export async function generateMetadata({ params }) {
 
 function NewPageID({ params }) {
   const item = DUMMY_NEWS.find((item) => item.slug == params.slug);
+  if (!item) {
+    notFound();
+  }
+
   return (
     <article className="news-article">
       <header>
