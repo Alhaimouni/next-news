@@ -1,5 +1,6 @@
 import Link from "next/link";
-
+import { DUMMY_NEWS } from "@/dummy-news";
+import Image from "next/image";
 export const metadata = {
   title: "News",
   description: "Know more about the world news.",
@@ -8,16 +9,18 @@ export const metadata = {
 export default function NewsPage() {
   return (
     <>
-      <ul>
-        <li>
-          <Link href={"/news/1"}>one</Link>
-        </li>
-        <li>
-          <Link href={"/news/2"}>two</Link>
-        </li>
-        <li>
-          <Link href={"/news/3"}>three</Link>
-        </li>
+      <h1>News Page</h1>
+      <ul className="news-list">
+        {DUMMY_NEWS.map((item) => {
+          return (
+            <li key={item.id}>
+              <Link href={`/news/${item.slug}`}>
+                <img src={`/images/news/${item.image}`} alt={item.title} />
+                <span>{item.title}</span>
+              </Link>
+            </li>
+          );
+        })}
       </ul>
     </>
   );
