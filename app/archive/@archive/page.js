@@ -1,9 +1,25 @@
-import React from 'react'
+import { getAvailableNewsYears } from "@/lib/news";
+import Link from "next/link";
 
 function ArchivePage() {
+  const links = getAvailableNewsYears();
   return (
-    <div>ArchivePage</div>
-  )
+    <>
+      <header id="archive-header">
+        <nav>
+          <ul>
+            {links.map((year) => {
+              return (
+                <li key={year}>
+                  <Link href={`/archive/${year}`}>{year}</Link>
+                </li>
+              );
+            })}
+          </ul>
+        </nav>
+      </header>
+    </>
+  );
 }
 
-export default ArchivePage
+export default ArchivePage;
