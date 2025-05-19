@@ -17,7 +17,7 @@ export default function ArchivePage({ params }) {
   console.log(year, month);
 
   if (filter && filter.length > 2) {
-    notFound();
+    throw new Error("Error in filters")
   }
 
   if (year && !month) {
